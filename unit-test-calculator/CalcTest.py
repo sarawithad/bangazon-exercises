@@ -11,7 +11,7 @@ class TestStringMethods(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        print('Set up class')
+        self.calculator = Calculator()
     # Create an instance of the calculator that can be used in all tests
 
     @classmethod
@@ -20,23 +20,27 @@ class TestStringMethods(unittest.TestCase):
 
 
     def test_add(self):
-        calculator = Calculator()
-        self.assertEqual(calculator.add(2,2), 4)
+        # calculator = Calculator() --dont need bc setUpClass^^
+        self.assertEqual(self.calculator.add(2,2), 4)
 
     def test_subtract(self):
-        calculator = Calculator()
-        self.assertEqual(calculator.subtract(2,2), 0)
+        # calculator = Calculator()
+        self.assertEqual(self.calculator.subtract(2,2), 0)
 
     def test_multiply(self):
-        calculator = Calculator()
-        self.assertEqual(calculator.multiply(2,3), 6)
+        # calculator = Calculator()
+        self.assertEqual(self.calculator.multiply(2,3), 6)
 
     def test_divide(self):
-        calculator = Calculator()
-        self.assertEqual(calculator.divide(10,5), 2)
-
+        # calculator = Calculator()
+        self.assertEqual(self.calculator.divide(10,5), 2)
 
 
 if __name__ == '__main__':
     unittest.main()
+
+
+# test ran on command line: python CalcTest.py -v
+#no need to use discover command b/c only one test module in this directory
+
 
