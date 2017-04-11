@@ -11,7 +11,7 @@ class Animal:
     #     return __name #2 underscores __ denotes private variable
 
     # @name.setter
-    # def set_name(self, val):
+    # def name(self, val):
     #     if isinstance(val, str):
     #         self.__name = val
 
