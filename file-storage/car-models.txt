@@ -1,0 +1,8 @@
+N=Titan
+N=Pathfinder
+B=X3
+F=Fiesta
+F=Explorer
+H=Pilot
+M=GLA
+M=GLC
