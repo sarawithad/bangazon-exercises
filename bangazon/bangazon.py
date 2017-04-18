@@ -26,8 +26,18 @@ class Department:
 	def get_budget(self):
 		return self.budget
 
+	def add_employee(self, employee):
+		self.employees.add(employee)
+		return self.employees
+
+	def remove_employee(self, employee):
+		self.employees.remove(employee)
+		return self.employees
+
 	def get_employees(self):
 		return self.employees
+
+
 
 
 class Design(Department):
@@ -96,11 +106,13 @@ class Finance(Department):
 
 
 #Classes added for Exercise 3 (Method Overloading)
-class Employee():
+class Employee(Department):
 
 	def __init__(self, first_name, last_name):
 		self.first_name = first_name
 		self.last_name = last_name
+
+	# Department.__init__(self)
 
 	def __str__(self):
 		return "{} {}".format(self.first_name, self.last_name)
@@ -134,7 +146,7 @@ class FullTime():
 		self.employmentType = "FullTime"
 
 
-class Partime():
+class PartTime():
 
 	def __init__(self):
 		self.hours_per_week = 24
@@ -149,12 +161,12 @@ class HumanResources(Employee, FullTime):
 		return "{} {} is a {} employee.".format(self.first_name, self.last_name, self.employmentType)
 
 
-class Unsecured(Department, Employee):
+class Unsecured(Department):
 	def __init__(self):
 		self.securityCard = False
 
 
-class Secured(Department, Employee):
+class Secured(Department):
 	def __init__(self):
 		self.securityCard = True
 
@@ -210,6 +222,39 @@ if __name__ == '__main__':
 	print(HRemployee)
 
 
+
+	#Exercise 5: Write a module that creates an instance of each of your Departments that you have defined. Then create two or three Employee instances for each Department, and add them to the appropriate Department instance. Once you have defined all of your Employees and Departments, write logic to output the name of each Department, and the first/last name of each employee it contains to the command line.
+	design = Design("Design", "Billie Bailey", "Seattle", 5)
+	sales = Sales("Sales", "Robert Frost", "Dallas", 50)
+	technology = Technology("Technology", "Lou Rawls", "Seattle", 15)
+	finance = Finance("Finance", "Abe Lincoln", "Dallas", 10)
+	legal = Legal("Legal", "Lady Gaga", "Seattle", 8)
+
+	design.add_employee("Dara Thomas")
+	design.add_employee("Robert Roberts")
+	design.add_employee("Lennon Grace")
+	print("Department: ", design.name)
+	print(design.employees)
+
+	sales.add_employee("Andy Holmes")
+	sales.add_employee("Ava Short")
+	print("Department: ", sales.name)
+	print(sales.employees)
+
+	technology.add_employee("Tate King")
+	technology.add_employee("Elizabeth Thomas")
+	print("Department: ", technology.name)
+	print(technology.employees)
+
+	finance.add_employee("Martha Hill")
+	finance.add_employee("Margaret Waldron")
+	print("Department: ", finance.name)
+	print(finance.employees)
+
+	legal.add_employee("Todd Hill")
+	legal.add_employee("Jane Smith")
+	print("Department: ", legal.name)
+	print(legal.employees)
 
 
 
