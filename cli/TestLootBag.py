@@ -5,57 +5,64 @@ class TestBagOLoot(unittest.TestCase):
 
 #decorator- @
 #way to add funtionality to your class. here if you don't add it, it will think setUpClass is a method to test, so @classmethod tells it to ignore it.
-
     @classmethod
     def setUpClass(self):
-        self.self.bag = LootBag()
+        self.bag = LootBag()
 
-    def test_add_toy_bag(self):
-        
-        self.self.bag.test_add_to_bag("Ball", "Vincent")
-        self.self.bag.list_toys_for_child("Vincent")
+
+    def test_add_toy_to_bag(self):
+        self.bag.add_to_bag("Ball", "Vincent")
         vincents_toys = self.bag.list_toys_for_child("Vincent")
 
-        #check if list first
-        self.assertIsInstance(vincents_toys, list)
         self.assertIn("Ball", vincents_toys)
 
-    def test_remove_toy_of_child(self):
+
+    def test_remove_toy_from_child(self):
         toy = "Slinky"
-        self.bag.add_to_bag("Ball", "Vincent")
-        self.bag.remove_toy_from_child("Ball", "Vincent")
+        self.bag.add_to_bag(toy, "Vincent")
+        self.bag.remove_toy_from_child(toy, "Vincent")
         vincents_toys = self.bag.list_toys_for_child("Vincent")
 
-        self.assertIn("Vincent", self.bag.get_kids())
-        self.assertNotIn("Ball", vincents_toys)
+        self.assertNotIn(toy, vincents_toys)
 
-    def test_list_of_good_kids(self):         
+
+    def test_list_of_good_kids(self):
         toy = "Silly Putty"
         self.bag.add_to_bag(toy, "Vincent")
         good_kids = self.bag.get_kids()
-        
-        self.assertIsInstance(good_kids, list)
+
         self.assertIn("Vincent", good_kids)
 
+
     def test_toys_in_bag_for_specific_child(self):
-        toy = "Slime"
+        toy = "GI Joe"
+        self.bag.add_to_bag(toy, "Mikey")
+        vincents_toys = self.bag.list_toys_for_child("Mikey")
+
+        self.assertIn(toy, vincents_toys)
+
+
+    def test_child_toys_are_delivered(self):
+        toy = "Unicorn"
         self.bag.add_to_bag(toy, "Vincent")
-        vincents_toys = self.bag.list_toys_for_child("Vincent")
-
-        self.assertIsInstance(vincents_toys, list)
-        self.assertIn("Slime", vincents_toys)
-
-    def test_child_toy_is_delivered(self):
-        toy = "Pony"
-        self.add_to_bag(toy, "Vincent")
+        self.bag.deliver_toys_to_child("Vincent")
         vincent = self.bag.get_single_child("Vincent")
+        suzie = self.bag.deliver_toys_to_child("Suzie")
 
-        self.assertIsInstance(vincent, dict)
         self.assertFalse(vincent["delivered"])
 
-        self.bag.deliver_toys_to_child("Vincent")
-        self.assertTrue(vincent["delivered"])
+        self.assertTrue(suzie["delivered"])
+
+if __name__ == '__main__':
+    unittest.main()
 
 
 # command to run in command line:
 # python -m unittest discover -s . -p "TestLootBag.py" -v
+
+
+
+
+
+
+
